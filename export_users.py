@@ -7,7 +7,7 @@ def generate_csv(application_vanity_domain, application_id, client_id, client_se
     access_token = get_token(application_vanity_domain, client_id, client_secret)
 
     start_index = 1
-    count = 2
+    count = 20
 
     all_items = []
     tenants = {}
