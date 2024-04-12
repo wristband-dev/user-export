@@ -44,10 +44,10 @@ def generate_csv(application_vanity_domain, application_id, client_id, client_se
             break
 
         start_index += count 
-
+    print(all_items)
     output_df = pd.DataFrame.from_records(all_items)
 
-    output_df[['tenantName', 'email', 'status']].to_csv('users.csv', index=False)
+    output_df[['tenantName', 'displayName', 'email', 'status']].to_csv('users.csv', index=False)
 
 
 def get_token(application_vanity_domain, client_id, client_secret):
@@ -79,7 +79,7 @@ def get_users_json(application_vanity_domain, application_id, access_token, star
     querystring = {
         'count': str(count),
         'start_index': str(start_index),
-        'fields': 'email, status, tenantId'
+        'fields': 'displayName, email, status, tenantId'
     }
 
     # Set the headers
