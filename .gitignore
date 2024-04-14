@@ -1,0 +1,4 @@
+user-export/myvenv/
+user-export/__pycache__/
+user-export/run_test.py
+user-export/users.csv
