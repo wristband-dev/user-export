@@ -6,6 +6,10 @@ class AuthenticationError(Exception):
     """Custom exception for authentication failures."""
     pass
 
+class AuthorizationError(Exception):
+    """Custom exception for authorization failures."""
+    pass
+
 class BadRequestError(Exception):
     """Custom exception for bad request errors."""
     pass
@@ -127,7 +131,7 @@ def get_users_json(application_vanity_domain, application_id, access_token, star
     if response.status_code == 404:
         raise BadRequestError("ApplicationId is not valid - please rerun script & enter a valid applicationId")
     elif response.status_code == 403:
-        raise AuthenticationError("Client is not authorized to perform the user export - please make sure that the client has the appropriate permissions assigned to it and then rerun script")
+        raise AuthorizationError("Client is not authorized to perform the user export - please make sure that the client has the appropriate permissions assigned to it and then rerun script")
 
     # Return json
     return response.json()
@@ -150,7 +154,7 @@ def get_tenant_name(application_vanity_domain, access_token, tenant_id):
     response = requests.get(url, headers=headers, params=querystring)
 
     if response.status_code == 403:
-        raise AuthenticationError("Client is not authorized to perform the user export - please make sure that the client has the appropriate permissions assigned to it and then rerun script")
+        raise AuthorizationError("Client is not authorized to perform the user export - please make sure that the client has the appropriate permissions assigned to it and then rerun script")
 
     return response.json().get('displayName', 'Unknown Tenant')
 
