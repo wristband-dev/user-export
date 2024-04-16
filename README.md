@@ -51,17 +51,15 @@ Before running the script, you need to configure it with your application detail
 
 To export users to a CSV file, execute the `run.py` script. This will generate a CSV file in your project directory containing the tenant user information.
 
-### Option 1
+### Option 1: Execute the run.py
 
-    - execute the run.py
-    - once executed you will be prompted with paramters to enter
+- Once executed, you will be prompted with parameters to enter:
 
 ```bash
 python3 run.py
 ```
 
-### Option 2
-    - execute the run.py with values passed in 
+### Option 2: Execute the run.py with values passed in 
 
 ```bash
 python3 run.py \
