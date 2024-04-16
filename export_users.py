@@ -10,7 +10,7 @@ class BadRequestError(Exception):
     """Custom exception for bad request errors."""
     pass
 
-def generate_csv(application_vanity_domain, application_id, client_id, client_secret):
+def generate_csv(application_vanity_domain, application_id, client_id, client_secret, output_file_name):
     try:
         # Get access token
         access_token = get_token(application_vanity_domain, client_id, client_secret)
@@ -66,7 +66,7 @@ def generate_csv(application_vanity_domain, application_id, client_id, client_se
         output_df = pd.DataFrame.from_records(all_items)
 
         # Output to csv
-        output_df[['tenantName', 'givenName', 'familyName', 'email', 'status']].to_csv('users.csv', index=False)
+        output_df[['tenantName', 'givenName', 'familyName', 'email', 'status']].to_csv(clean_file_name(output_file_name), index=False)
 
     except (AuthenticationError, BadRequestError) as error:
         print(error)
@@ -87,16 +87,21 @@ def get_token(application_vanity_domain, client_id, client_secret):
         'grant_type': 'client_credentials',
     }
 
-    # Make the request using HTTP Basic Authentication
-    response = requests.post(url, headers=headers, data=payload, auth=HTTPBasicAuth(client_id, client_secret))
+    try:
+        # Make the request using HTTP Basic Authentication
+        response = requests.post(url, headers=headers, data=payload, auth=HTTPBasicAuth(client_id, client_secret))
+
+    except:
+        raise BadRequestError("Domain name is not valid - please rerun script & enter a valid domain name")
 
     if response.status_code == 401:
         raise AuthenticationError("Client credentials are not valid - please rerun script & enter valid credentials")
     elif response.status_code == 400:
         raise BadRequestError("Application vanity domain is not valid - please rerun script & enter valid credentials")
-
+    
     # Return json
     return response.json().get('access_token')
+    
 
 
 def get_users_json(application_vanity_domain, application_id, access_token, start_index, count):
@@ -120,9 +125,9 @@ def get_users_json(application_vanity_domain, application_id, access_token, star
     response = requests.get(url, headers=headers, params=querystring)
 
     if response.status_code == 404:
-        raise BadRequestError("ApplicationId is not valid - please rerun script & enter valid credentials")
+        raise BadRequestError("ApplicationId is not valid - please rerun script & enter a valid applicationId")
     elif response.status_code == 403:
-        raise BadRequestError("Client isn’t authorized to perform the user export - please rerun script")
+        raise BadRequestError("Client is not authorized to perform the user export - please rerun script")
 
     # Return json
     return response.json()
@@ -144,16 +149,10 @@ def get_tenant_name(application_vanity_domain, access_token, tenant_id):
 
     response = requests.get(url, headers=headers, params=querystring)
 
+    if response.status_code == 403:
+        raise AuthenticationError("Client is not authorized to perform the user export - please make sure that the client has the appropriate permissions assigned to it and then rerun script")
+
     return response.json().get('displayName', 'Unknown Tenant')
-
-
-def get_application_vanity_domain():
-    while True:
-        domain = input("Enter the application vanity domain: ")
-        if domain.endswith('.us.wristband.dev'):
-            return domain
-        else:
-            print("The domain must end with '.us.wristband.dev'. Please try again.")
 
 
 def get_non_empty_response(prompt):
@@ -163,3 +162,10 @@ def get_non_empty_response(prompt):
             return response
         else:
             print("This field cannot be empty. Please enter a valid response.")
+
+def clean_file_name(file_name):
+    split_name = file_name.split('.csv')
+    if len(split_name) == 1:
+        return f'{file_name}.csv'
+    else:
+        return file_name
