@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import sys
-import export_users
+from export_users import get_non_empty_response, generate_csv
 
 def main():
     # Create the parser
@@ -18,13 +18,13 @@ def main():
     args = parser.parse_args()
 
     # Check if arguments were provided, otherwise prompt the user
-    app_vanity_domain = args.app_vanity_domain or export_users.get_non_empty_response("Enter the application vanity domain: ")
-    app_id = args.app_id or export_users.get_non_empty_response("Enter the application ID: ")
-    client_id = args.client_id or export_users.get_non_empty_response("Enter the client ID: ")
-    client_secret = args.client_secret or export_users.get_non_empty_response("Enter the client secret: ")
+    app_vanity_domain = args.app_vanity_domain or get_non_empty_response("Enter the application vanity domain: ")
+    app_id = args.app_id or get_non_empty_response("Enter the application ID: ")
+    client_id = args.client_id or get_non_empty_response("Enter the client ID: ")
+    client_secret = args.client_secret or get_non_empty_response("Enter the client secret: ")
 
     # Generate CSV
-    export_users.generate_csv(app_vanity_domain, app_id, client_id, client_secret, args.file_name)
+    generate_csv(app_vanity_domain, app_id, client_id, client_secret, args.file_name)
 
 if __name__ == "__main__":
     main()
