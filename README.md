@@ -1,12 +1,38 @@
-# user-export
+<div align="center">
+  <a href="https://wristband.dev">
+    <picture>
+      <img src="https://assets.wristband.dev/images/email_branding_logo_v1.png" alt="Github" width="297" height="64">
+    </picture>
+  </a>
+  <p align="center">
+    Enterprise-ready auth that is secure by default, truly multi-tenant, and ungated for small businesses.
+  </p>
+  <p align="center">
+    <b>
+      <a href="https://wristband.dev">Website</a> •
+      <a href="https://wristband.stoplight.io/docs/documentation">Documentation</a>
+    </b>
+  </p>
+</div>
 
-A Python script that outputs tenant user information into a CSV file.
+<br/>
+
+---
+
+<br/>
+
+# Wristband User Export Script
+
+A Python script that outputs tenant user information from your Wristband application into a CSV file.
 
 ## Getting Started
 
 These instructions will guide you on how to set up your environment to run the `user-export` script successfully.
 
-### Download Environment
+### Set Up Your Environment
+
+> [!NOTE]
+> If you haven't already, ensure that <ins>[pip3](https://en.wikipedia.org/wiki/Pip_(package_manager))</ins> is installed on your machine before going further.
 
 To prepare your environment, follow these steps:
 
@@ -37,7 +63,7 @@ To prepare your environment, follow these steps:
 
 ## Configuration
 
-Before running the script, you need to configure it with your application details:
+Before running the script, you need to configure it with your application details, which can be found in the <ins>[Wristband Dashboard](https://wristband.stoplight.io/docs/documentation/bx365vbe3m1dy-application-settings-application-level)</ins>:
 
 1. **Add your `application_vanity_domain` & `application_id`:**
    
@@ -45,11 +71,11 @@ Before running the script, you need to configure it with your application detail
 
 2. **Add your `client_id` & `client_secret`:**
    
-    - Instructions for obtaining these credentials can be found in the [Getting Access Tokens documentation](https://wristband.stoplight.io/docs/documentation/u236uoxf36sxp-getting-access-tokens-to-test-ap-is).
+    - Instructions for obtaining these credentials can be found in the <ins>[Getting Access Tokens documentation](https://wristband.stoplight.io/docs/documentation/u236uoxf36sxp-getting-access-tokens-to-test-ap-is)</ins>.
 
 ## Usage
 
-To export users to a CSV file, execute the `run.py` script. This will generate a CSV file in your project directory containing the tenant user information.
+To export users into a CSV file, execute the `run.py` script. This will generate a CSV file in your project directory containing the tenant user information.
 
 ### Option 1: Execute the run.py
 
@@ -69,3 +95,11 @@ python3 run.py \
     --client_secret clientSecret \
     --file_name users
 ```
+
+<br/>
+
+## Questions
+
+Reach out to the Wristband team at <support@wristband.dev> for any questions regarding this script.
+
+<br/>
