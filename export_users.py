@@ -70,7 +70,9 @@ def generate_csv(application_vanity_domain, application_id, client_id, client_se
         output_df = pd.DataFrame.from_records(all_items)
 
         # Output to csv
-        output_df[['tenantName', 'givenName', 'familyName', 'email', 'status']].to_csv(clean_file_name(output_file_name), index=False)
+        file_name = clean_file_name(output_file_name)
+        output_df[['tenantName', 'givenName', 'familyName', 'email', 'status']].to_csv(file_name, index=False)
+        print(f'Successfully exported {len(output_df)} users to {file_name}')
 
     except (AuthenticationError, BadRequestError) as error:
         print(error)
@@ -79,7 +81,7 @@ def generate_csv(application_vanity_domain, application_id, client_id, client_se
 
 def get_token(application_vanity_domain, client_id, client_secret):
     # Construct the URL
-    url = f'https://{application_vanity_domain}/api/v1/oauth2/token?pretty=true'
+    url = f'https://{application_vanity_domain}/api/v1/oauth2/token'
 
     # Headers to indicate the type of data being sent
     headers = {
