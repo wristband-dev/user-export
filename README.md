@@ -58,7 +58,7 @@ To prepare your environment, follow these steps:
 4. **Install the required packages:**
 
     ```bash
-    python -m pip install -r requirements.txt
+    pip install -r requirements.txt
     ```
 
 ## Configuration
@@ -82,13 +82,13 @@ To export users into a CSV file, execute the `run.py` script. This will generate
 - Once executed, you will be prompted with parameters to enter:
 
 ```bash
-python3 run.py
+python run.py
 ```
 
 ### Option 2: Execute the run.py with values passed in 
 
 ```bash
-python3 run.py \
+python run.py \
     --app_vanity_domain name.us.wristband.dev \
     --app_id appId \
     --client_id clientId \
