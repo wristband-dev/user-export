@@ -32,7 +32,7 @@ To prepare your environment, follow these steps:
 4. **Install the required packages:**
 
     ```bash
-    pip3 install requests pandas
+    python -m pip install -r requirements.txt
     ```
 
 ## Configuration
