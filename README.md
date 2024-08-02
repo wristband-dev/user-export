@@ -10,7 +10,7 @@
   <p align="center">
     <b>
       <a href="https://wristband.dev">Website</a> •
-      <a href="https://wristband.stoplight.io/docs/documentation">Documentation</a>
+      <a href="https://docs.wristband.dev">Documentation</a>
     </b>
   </p>
 </div>
@@ -63,7 +63,7 @@ To prepare your environment, follow these steps:
 
 ## Configuration
 
-Before running the script, you need to configure it with your application details, which can be found in the <ins>[Wristband Dashboard](https://wristband.stoplight.io/docs/documentation/bx365vbe3m1dy-application-settings-application-level)</ins>:
+Before running the script, you need to configure it with your application details, which can be found in the Wristband Dashboard on the Application Settings page</ins>:
 
 1. **Add your `application_vanity_domain` & `application_id`:**
    
@@ -71,7 +71,7 @@ Before running the script, you need to configure it with your application detail
 
 2. **Add your `client_id` & `client_secret`:**
    
-    - Instructions for obtaining these credentials can be found in the <ins>[Getting Access Tokens documentation](https://wristband.stoplight.io/docs/documentation/u236uoxf36sxp-getting-access-tokens-to-test-ap-is)</ins>.
+    - Instructions for obtaining these credentials can be found in the <ins>[Getting Access Tokens documentation](https://docs.wristband.dev/docs/getting-access-tokens-to-test-apis)</ins>.
 
 ## Usage
 
